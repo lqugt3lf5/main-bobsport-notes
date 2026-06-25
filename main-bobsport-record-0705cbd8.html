@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bob体育 · 信息介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fce9d7 0%, #f7d9c4 50%, #f2c8ad 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.2rem 4rem;
+      line-height: 1.6;
+      color: #2e241e;
+    }
+
+    .page-wrap {
+      max-width: 920px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* 暖色卡片 */
+    .card {
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 36px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 12px 28px rgba(160, 90, 50, 0.13);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 16px 32px rgba(150, 80, 40, 0.18);
+    }
+
+    /* hero 横幅 */
+    .hero {
+      text-align: center;
+      background: linear-gradient(115deg, #fcede2, #f6dac8);
+      border-radius: 48px;
+      padding: 3.2rem 2.2rem 2.8rem;
+      position: relative;
+      border: 1px solid rgba(220, 170, 140, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 550;
+      letter-spacing: 1px;
+      color: #3b261d;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.2rem;
+      font-weight: 350;
+      color: #5e4233;
+      opacity: 0.85;
+      border-top: 1px solid #dbb9a4;
+      display: inline-block;
+      padding-top: 1rem;
+      margin-top: 0.4rem;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #d9ad92;
+      color: #2b1d16;
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      margin-top: 1.4rem;
+      letter-spacing: 0.5px;
+      font-weight: 480;
+    }
+
+    /* 介绍段落 */
+    .intro-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .intro-block h2 {
+      font-size: 1.5rem;
+      font-weight: 520;
+      color: #483124;
+      border-left: 6px solid #c99b7c;
+      padding-left: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .intro-block p {
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .intro-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-link {
+      color: #844b2b;
+      text-decoration: none;
+      font-weight: 520;
+      border-bottom: 2px solid #dbb09a;
+      padding-bottom: 0.08rem;
+      transition: 0.15s;
+    }
+
+    .highlight-link:hover {
+      background-color: #ebd6c7;
+      border-bottom-color: #9f6a4a;
+    }
+
+    /* 特点小卡片组 */
+    .feature-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      justify-content: center;
+      margin-top: 0.4rem;
+    }
+
+    .feature-item {
+      background: rgba(245, 225, 210, 0.6);
+      flex: 1 1 160px;
+      min-width: 130px;
+      padding: 1.2rem 0.8rem;
+      border-radius: 40px;
+      text-align: center;
+      border: 1px solid #e5c7b4;
+      backdrop-filter: blur(2px);
+      transition: 0.1s ease;
+    }
+
+    .feature-item span {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-item .label {
+      font-size: 0.95rem;
+      font-weight: 470;
+      color: #3f2c21;
+    }
+
+    /* FAQ 摘要区 */
+    .faq-mini {
+      margin-top: 0.6rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.7rem;
+      border-bottom: 1px dashed #d6b7a2;
+      padding-bottom: 0.5rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 510;
+      cursor: pointer;
+      color: #543b2c;
+      padding: 0.2rem 0;
+      font-size: 1.02rem;
+      list-style: none;
+    }
+
+    .faq-mini summary::before {
+      content: "▸ ";
+      color: #b37b5f;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "▾ ";
+    }
+
+    .faq-mini .answer {
+      padding: 0.4rem 0 0.3rem 1.5rem;
+      color: #4f382a;
+      font-size: 0.98rem;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #4f382b;
+      border-top: 1px solid #d7b69f;
+      padding-top: 1.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .footer-note a {
+      color: #6d422c;
+      font-weight: 530;
+      text-decoration: none;
+      border-bottom: 1px solid #b68b73;
+    }
+
+    .footer-note a:hover {
+      background: #e0c8b8;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.6rem 0.8rem 3rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .hero {
+        padding: 2.2rem 1rem 2rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero .subhead {
+        font-size: 1rem;
+      }
+      .intro-block h2 {
+        font-size: 1.25rem;
+      }
+      .feature-item {
+        flex: 1 1 120px;
+        min-width: 100px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .feature-item {
+        flex-basis: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- Hero 横幅 -->
+    <section class="hero card">
+      <h1>bob体育 · 信息导览</h1>
+      <div class="subhead">一个持续维护的访问位置</div>
+      <div class="badge">服务说明 · 稳定入口</div>
+    </section>
+
+    <!-- 三段自然介绍 + 背景 -->
+    <section class="intro-grid card">
+
+      <div class="intro-block">
+        <h2>平台背景与定位</h2>
+        <p>
+          在众多体育与互动内容平台中，<a class="highlight-link" href="https://main-bobsport.com" target="_blank">bob体育</a> 
+          长期作为一个稳定的访问点存在。它面向用户提供体育资讯、赛事动态及相关的娱乐内容服务，界面清晰，功能模块经过多次调整与优化，能够适应不同网络环境下的常规浏览需求。
+        </p>
+        <p>
+          从最初的内容聚合到如今的综合界面，bob体育 始终围绕体育爱好者的使用习惯打磨基础结构，不追求复杂跳转，而是将常用路径放在显眼位置。
+        </p>
+      </div>
+
+      <div class="intro-block">
+        <h2>主要特点与场景</h2>
+        <p>
+          平台整合了多类体育项目的信息流，包括足球、篮球、网球等主流赛事，同时提供数据分析、赛程预览与结果回顾。对于偏好简洁操作的用户，bob体育 提供了直达内容的方式，无需层层菜单即可找到感兴趣的部分。
+        </p>
+        <p>
+          常见使用场景包括：赛前查阅对阵信息、赛后浏览简要统计，以及跟踪热门联赛的进度。页面整体响应较快，适合在移动端或桌面端随时打开。
+        </p>
+        <!-- 特点小卡片 -->
+        <div class="feature-row">
+          <div class="feature-item"><span>⚽</span><div class="label">足球赛事</div></div>
+          <div class="feature-item"><span>🏀</span><div class="label">篮球动态</div></div>
+          <div class="feature-item"><span>🎾</span><div class="label">网球资讯</div></div>
+          <div class="feature-item"><span>📊</span><div class="label">数据参考</div></div>
+        </div>
+      </div>
+
+      <div class="intro-block">
+        <h2>访问方式与建议</h2>
+        <p>
+          由于网络服务存在一定变动，建议将 <a class="highlight-link" href="https://main-bobsport.com" target="_blank">bob体育</a> 的地址保存在书签或常用链接中，以便快速返回。平台没有强制弹窗或多余跳转，首页内容即核心导航。
+        </p>
+        <p>
+          如果需要了解特定赛事或功能模块，可以直接在站内搜索框输入关键词，或通过顶部分类进入对应板块。对于新用户，浏览首页的推荐区域往往能快速了解当前热门内容。
+        </p>
+      </div>
+
+    </section>
+
+    <!-- FAQ 摘要  (精选两个常见问题) -->
+    <section class="card faq-mini">
+      <h2 style="font-size:1.3rem; font-weight:500; color:#483124; margin-bottom:0.6rem; border-left:5px solid #c99b7c; padding-left:1rem;">常见疑问 · 摘要</h2>
+      <details>
+        <summary>bob体育 需要注册才能浏览吗？</summary>
+        <div class="answer">部分内容可直接浏览，完整互动功能可能需要注册账户。具体以站内提示为准。</div>
+      </details>
+      <details>
+        <summary>页面加载速度受哪些因素影响？</summary>
+        <div class="answer">主要受网络环境及地区连接影响。建议使用稳定的网络，并更新浏览器至较新版本。</div>
+      </details>
+      <details>
+        <summary>移动端与桌面端体验一致吗？</summary>
+        <div class="answer">页面采用自适应布局，核心功能在手机与电脑上均可正常使用，部分元素会随屏幕尺寸调整位置。</div>
+      </details>
+    </section>
+
+    <!-- 页尾 访问提示 -->
+    <div class="footer-note card" style="padding-top:1.2rem; padding-bottom:1.2rem;">
+      <p style="margin-bottom:0.3rem;">
+        如需直接访问，可在此处前往 
+        <a href="https://main-bobsport.com" target="_blank">bob体育</a> 
+        — 该地址为当前主要访问节点，建议定期核对可用性。
+      </p>
+      <p style="font-size:0.9rem; opacity:0.7; margin-top:0.6rem;">
+        信息整理 · 仅供说明参考  |  保持更新
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
